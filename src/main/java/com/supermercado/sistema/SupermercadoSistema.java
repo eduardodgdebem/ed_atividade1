@@ -20,30 +20,30 @@ public class SupermercadoSistema {
   }
 
   public Boolean venderProduto(String nomeProduto, Integer quantidade) {
-        Compra ultimaCompra = this.historicoCompra.buscar(produto -> produto.getNomeProduto().equals(nomeProduto));
-        if (ultimaCompra == null) {
-            return false;
-        }
+    Compra ultimaCompra = this.historicoCompra.buscar(produto -> produto.getNomeProduto().equals(nomeProduto));
+    if (ultimaCompra == null) {
+      return false;
+    }
 
-        int quantidadeAtual = estoqueAtual.getOrDefault(nomeProduto, 0);
-        if (quantidadeAtual < quantidade) {
-            return false;
-        }
+    int quantidadeAtual = estoqueAtual.getOrDefault(nomeProduto, 0);
+    if (quantidadeAtual < quantidade) {
+      return false;
+    }
 
-        estoqueAtual.put(nomeProduto, quantidadeAtual - quantidade);
-        return true;
+    estoqueAtual.put(nomeProduto, quantidadeAtual - quantidade);
+    return true;
   }
 
-    public Double getPrecoVendaAtual(String nomeProduto) {
-      Compra ultimaCompra = this.historicoCompra.buscar(produto -> produto.getNomeProduto().equals(nomeProduto));
-      return ultimaCompra != null ? ultimaCompra.getPrecoVenda() : null;
-    }
+  public Double getPrecoVendaAtual(String nomeProduto) {
+    Compra ultimaCompra = this.historicoCompra.buscar(produto -> produto.getNomeProduto().equals(nomeProduto));
+    return ultimaCompra != null ? ultimaCompra.getPrecoVenda() : null;
+  }
 
-    public Integer getEsqoqueAtual(String nomeProduto) {
-        return estoqueAtual.getOrDefault(nomeProduto, 0);
-    }
+  public Integer getEsqoqueAtual(String nomeProduto) {
+    return estoqueAtual.getOrDefault(nomeProduto, 0);
+  }
 
-    public Compra getUltimaCompra(String nomeProduto) {
-        return this.historicoCompra.buscar(produto -> produto.getNomeProduto().equals(nomeProduto));
-    }
+  public Compra getUltimaCompra(String nomeProduto) {
+    return this.historicoCompra.buscar(produto -> produto.getNomeProduto().equals(nomeProduto));
+  }
 }

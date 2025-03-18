@@ -6,10 +6,6 @@ public class Pilha<T> {
   private No<T> topo;
   private Integer tamanho = 0;
 
-  public T peek() {
-    return topo.valor;
-  }
-
   public void empilha(T valor) {
     No<T> novoNo = new No<>(valor);
     this.tamanho++;
@@ -48,15 +44,14 @@ public class Pilha<T> {
     System.out.println();
   }
 
-
   public T buscar(FuncaoValidadora<T> validacao) {
-      No<T> atual = topo;
-      while (atual != null) {
-          if (validacao.validar(atual.valor)) {
-              return atual.valor;
-          }
-          atual = atual.filho;
+    No<T> atual = topo;
+    while (atual != null) {
+      if (validacao.validar(atual.valor)) {
+        return atual.valor;
       }
-      return null;
+      atual = atual.filho;
+    }
+    return null;
   }
 }

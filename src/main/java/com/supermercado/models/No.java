@@ -6,5 +6,5 @@ public class No<T> {
 
   public No(T valor) {
     this.valor = valor;
-  } 
+  }
 }
